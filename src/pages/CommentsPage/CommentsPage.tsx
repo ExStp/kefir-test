@@ -20,6 +20,8 @@ export const CommentsPage = () => {
     if (comments.isLoading || comments.isLoading) return <LoaderFallback />;
     if (comments.error || authors.error) return <ErrorFallback />;
 
+
+    console.log(comments);
     const {total_pages, page: currentPage} = comments.data.pagination;
 
     return (
