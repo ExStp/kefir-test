@@ -1,7 +1,7 @@
 import {QueryClient, QueryClientProvider, useQueryClient} from "react-query";
 import "./App.css";
-import "./global-styles.css"
-import {CommentsPage} from "./pages/CommentsPage/CommentsPage";
+import "./global-styles.css";
+import {CommentsPage} from "./pages";
 
 function App() {
     const queryClient = new QueryClient();
