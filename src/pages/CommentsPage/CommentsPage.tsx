@@ -3,28 +3,33 @@ import {CommentsList, ErrorFallback, LoaderFallback} from "src/widgets";
 import {Button} from "src/shared/ui";
 
 import {useState} from "react";
-import {useQuery} from "react-query";
-import getAuthorsRequest from "src/api/authors/getAuthorsRequest";
-import getCommentsRequest from "src/api/comments/getCommentsRequest";
+import {useGetAuthors, useGetComments} from "src/shared/api/hooks";
 
 export const CommentsPage = () => {
     const [page, setPage] = useState(1);
 
-    const authors = useQuery("authors", getAuthorsRequest);
-    const comments = useQuery(["comments", page], () =>
-        getCommentsRequest(page),
-    );
+    const {authorsData, refetchAuthors, isAuthorsError, isAuthorsLoading} =
+        useGetAuthors();
+    const {commentsData, refetchComments, isCommentsError, isCommentsLoading} =
+        useGetComments(page);
 
-    if (comments.isLoading || comments.isLoading) return <LoaderFallback />;
-    if (comments.error || authors.error) return <ErrorFallback />;
-    
-    const {total_pages, page: currentPage} = comments.data.pagination;
-    
+    const handleReloadData = () => {
+        if (isAuthorsError) refetchAuthors();
+        if (isCommentsError) refetchComments();
+    };
+
+    if (isCommentsLoading || isAuthorsLoading) return <LoaderFallback />;
+    if (isCommentsError || isAuthorsError)
+        return <ErrorFallback handleReload={handleReloadData} />;
+
+    const {total_pages, page: currentPage} = commentsData.pagination;
+
     return (
         <div className={styles.wrapper}>
             <CommentsList
-                authors={authors.data}
-                comments={comments.data.data}
+                page={page}
+                authors={authorsData}
+                comments={commentsData.data}
                 key={"commentsList"}
             />
             {total_pages !== currentPage ? (

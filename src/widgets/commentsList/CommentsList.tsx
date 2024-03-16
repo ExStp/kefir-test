@@ -3,7 +3,7 @@ import styles from "./CommentsList.module.css";
 
 import {CommentsListProps} from "./CommentsList.types";
 
-export const CommentsList = ({authors, comments}: CommentsListProps) => {
+export const CommentsList = ({authors, comments, page}: CommentsListProps) => {
     const getCommentsTree = (comments: any, parentId = null) => {
         return comments
             .filter((comment: any) => comment.parent === parentId)
@@ -22,6 +22,7 @@ export const CommentsList = ({authors, comments}: CommentsListProps) => {
             return (
                 <div key={comment.id}>
                     <Comment
+                        page={page}
                         author={authorData}
                         comment={comment}
                         key={`${id}-${created}`}
