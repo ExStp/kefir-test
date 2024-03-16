@@ -1,3 +1,6 @@
 export interface CommentProps {
-    text: string;
+    comment: any;
+    author: any;
+    children?: JSX.Element;
+    child?: boolean;
 }

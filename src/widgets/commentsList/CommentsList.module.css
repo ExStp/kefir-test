@@ -4,12 +4,19 @@
 
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 22px;
 }
 
 .commentsContainer {
     margin: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+}
+
+.childComments {
+    padding-left: 32px;
+}
+
+@media (max-width: 576px) {
+    .childComments {
+        padding-left: 12px;
+    }
 }

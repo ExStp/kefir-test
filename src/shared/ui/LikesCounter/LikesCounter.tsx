@@ -1,11 +1,15 @@
-import styles from './LikesCounter.module.css'
+import styles from "./LikesCounter.module.css";
 
 import DislikeIcon from "../../icons/dislike-icon.png";
 import OutlineLikeIcon from "../../icons/outline-like-icon.png";
 import SolidLikeIcon from "../../icons/solid-like-icon.png";
 import {LikeIconTypes, LikesCounterProps} from "./LikesCounter.types";
 
-export const LikesCounter = ({iconType, likesAmount}: LikesCounterProps) => {
+export const LikesCounter = ({
+    iconType,
+    likesAmount,
+    onClick,
+}: LikesCounterProps) => {
     const Icon: Record<LikeIconTypes, string> = {
         dislike: DislikeIcon,
         outline: OutlineLikeIcon,
@@ -14,7 +18,7 @@ export const LikesCounter = ({iconType, likesAmount}: LikesCounterProps) => {
 
     return (
         <div className={styles.counterWrapper}>
-            <img src={Icon[iconType]} alt={iconType} />
+            <img src={Icon[iconType]} alt={iconType} onClick={onClick} className={styles.likesIcon}  />
             <span>{likesAmount}</span>
         </div>
     );

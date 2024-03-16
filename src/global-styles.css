@@ -1,13 +1,13 @@
 /* global-styles.css */
 
 :root {
-    --background-color: #F8F8FF;
+    --background-color: #f8f8ff;
 
     --font-size-small: 14px;
     --font-size-medium: 16px;
     --font-size-large: 18px;
 
-    --text-color: 	#4d4d4d;
+    --text-color: #4d4d4d;
 
 }
 
@@ -17,4 +17,3 @@ body {
     font-weight: 600;
     color: var(--text-color);
 }
-
